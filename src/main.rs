@@ -53,7 +53,9 @@ fn input_usuario() {
 fn reto_condicionales() {
     println!("\n\n\n##### Clase y reto de condicionales #####");
 
-    println!("Hola, Neo, tienes la opcion de escoger una pildora y esta cambiara tu vida para siempre.");
+    println!(
+        "Hola, Neo, tienes la opcion de escoger una pildora y esta cambiara tu vida para siempre."
+    );
     println!("Que pildora eliges? Tienes la opcion de la 'azul' o la 'roja'.");
     println!("La pildora 'azul' te mantendra dormido y no nos volveremos a ver.");
     println!("La pildora 'roja' te despertara de la matrix y me permitira mostrarte la verdad.");
@@ -72,6 +74,36 @@ fn reto_condicionales() {
     }
 }
 
+fn ciclo_loop() {
+    println!("\n\n\n##### Clase del ciclo Loop #####");
+
+    let numero_1: u8 = 123;
+    let numero_2: u16 = 321;
+
+    let suma = numero_1 as u16 + numero_2;
+
+    loop {
+        let mut suma_usuario = String::new(); // Aqui no se tiene que especificar el tipo de dato, ya que lo infiere Rust
+        println!(
+            "Por favor escribir la suma de {} y {}: ",
+            numero_1, numero_2
+        );
+        std::io::stdin().read_line(&mut suma_usuario).unwrap();
+
+        let suma_usuario: u16 = suma_usuario.trim().parse().unwrap();
+
+        if suma_usuario == suma {
+            println!("Acertaste! El resultado {} es correcto", suma);
+            break;
+        } else {
+            println!(
+                "El resultado ingresado ({}) no es correcto, intentalo de nuevo",
+                suma_usuario
+            );
+        }
+    }
+}
+
 fn main() {
     // Declarando y definiendo una variable
     let edad: u8 = 25; // u8 es un unsigned int de 8 bytes
@@ -84,4 +116,6 @@ fn main() {
     input_usuario();
 
     reto_condicionales();
+
+    ciclo_loop();
 }
