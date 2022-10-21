@@ -1,6 +1,5 @@
 fn reto_temperatura() {
-
-    println!("##### Reto Temperatura #####");
+    println!("\n\n\n##### Reto Temperatura #####");
 
     let temperatura_minima: i8 = -13;
     let temperatura_maxima: i8 = 23;
@@ -27,7 +26,7 @@ fn reto_formulario() {
 }
 
 fn input_usuario() {
-    println!("##### Clase input usuario #####");
+    println!("\n\n\n##### Clase input usuario #####");
 
     // Al declarar el String se inicializa de la siguiente forma
     let mut nombre: String = String::new(); // String es mas pesado que &str pero tiene mas funcionalidades
@@ -43,9 +42,34 @@ fn input_usuario() {
     // Convirtiendo edad a numero
     let edad_int: u8 = edad.trim().parse().unwrap();
 
-    println!("Hola, bienvenido/a {}, tienes una edad de: {}", nombre, edad_int);
+    println!(
+        "Hola, bienvenido/a {}, tienes una edad de: {}",
+        nombre, edad_int
+    );
 
     reto_formulario();
+}
+
+fn reto_condicionales() {
+    println!("\n\n\n##### Clase y reto de condicionales #####");
+
+    println!("Hola, Neo, tienes la opcion de escoger una pildora y esta cambiara tu vida para siempre.");
+    println!("Que pildora eliges? Tienes la opcion de la 'azul' o la 'roja'.");
+    println!("La pildora 'azul' te mantendra dormido y no nos volveremos a ver.");
+    println!("La pildora 'roja' te despertara de la matrix y me permitira mostrarte la verdad.");
+
+    let mut pildora: String = String::new();
+    println!("Ingresa el color de pildora que quieras tomar (azul/roja): ");
+    std::io::stdin().read_line(&mut pildora).unwrap();
+    pildora = pildora.trim().to_string().to_lowercase();
+
+    if pildora == "azul" {
+        println!("Adios, Neo, me equivoque contigo...");
+    } else if pildora == "roja" {
+        println!("Sabia que podia confiar en ti, ven conmigo, Neo...");
+    } else {
+        println!("Respuesta equivocada");
+    }
 }
 
 fn main() {
@@ -55,13 +79,9 @@ fn main() {
     let nombre: &str = "Orazio"; // el string se declara como &str
     println!("Hola soy {} y tengo {} anhos", nombre, edad);
 
-    println!();
-    println!();
-    println!();
     reto_temperatura();
 
-    println!();
-    println!();
-    println!();
     input_usuario();
+
+    reto_condicionales();
 }
