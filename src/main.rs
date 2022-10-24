@@ -104,6 +104,58 @@ fn ciclo_loop() {
     }
 }
 
+fn arrays_y_for() {
+    println!("\n\n\n##### Clase de arrays y ciclo for #####");
+
+    // Declarando un vector
+    // Si no se le agregara un String seria necesario indicar el tipo del vector, de lo contrario no compilaria
+    let mut nombres: Vec<String> = Vec::new();
+    print!("El vector vacio es: {:#?}\n", nombres); // :#? indica que sera un "pretty print" segun la documentacion, Vec no tiene implementado un metodo de impresion en consola como tal
+
+    let mut nombre: String = String::new();
+    for _ in 0..3 {
+        // El prof usa 'i' como variable, pero yo uso _ ya que no la voy a usar y es valido
+
+        println!("Por favor introduce un nombre:");
+        // Interesante, la siguiente linea, si no se limpia la cadena de "nombre", concatenara lo que lea del input en "nombre"
+        // Por eso hay que resetear la variable
+        std::io::stdin().read_line(&mut nombre).unwrap();
+
+        nombres.push(nombre.trim().to_string());
+        nombre = "".to_string();
+    }
+
+    nombres.push("Camilo".to_string());
+    println!(
+        "Impresion normal con ':?': {:?}\nImpresion con ':#?': {:#?}",
+        nombres, nombres
+    );
+    println!("{}", nombres.len());
+
+    let len_nombres = nombres.len();
+    // For con indices
+    // No se por que no funcionaba for index in 0..nombres.len()
+    // Debi declarar y asignar len_nombres antes del for nombre in nombres porque el mismo compilador de Rust
+    // Me decia que despues de ese for se habia "movido" nombres, o algo asi... investigar
+    println!("Imprimiendo con index variable");
+    for index in 0..len_nombres {
+        println!("{}", nombres[index]);
+    }
+
+    // Recorrido del array con un for, practicamente igual que en python
+    for nombre in nombres {
+        println!("Nombre: {}", nombre);
+    }
+
+    // Creando un array inmutable
+    let hola = ["H", "O", "L", "A"];
+    println!("Indice 0: {}", hola[0]);
+    println!("Indice 1: {}", hola[1]);
+    println!("Indice 2: {}", hola[2]);
+    println!("Indice 3: {}", hola[3]);
+    
+}
+
 fn main() {
     // Declarando y definiendo una variable
     let edad: u8 = 25; // u8 es un unsigned int de 8 bytes
@@ -118,4 +170,6 @@ fn main() {
     reto_condicionales();
 
     ciclo_loop();
+
+    arrays_y_for();
 }
